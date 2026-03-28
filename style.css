@@ -1,73 +1,115 @@
-body {
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-  margin: 0;
+let offers = JSON.parse(localStorage.getItem("offers")) || [];
+let editIndex = null;
+
+// FORMAT RUPIAH
+function formatRupiah(num) {
+  return "Rp " + num.toLocaleString("id-ID");
 }
 
-.container {
-  padding: 20px;
+// AUTO PRICE
+function applyAutoPrice(offer) {
+  if (offer.stock < 5) offer.price += 2000;
+  else if (offer.stock > 20) offer.price -= 1000;
 }
 
-h1 {
-  margin-bottom: 20px;
+// SAVE DATA
+function saveData() {
+  localStorage.setItem("offers", JSON.stringify(offers));
 }
 
-button {
-  padding: 8px 12px;
-  margin: 5px;
-  background: #22c55e;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
+// STATS
+function updateStats() {
+  document.getElementById("totalProduct").innerText = offers.length;
+
+  const totalStock = offers.reduce((sum, o) => sum + o.stock, 0);
+  document.getElementById("totalStock").innerText = totalStock;
+
+  const active = offers.filter(o => o.status === "Active").length;
+  document.getElementById("activeCount").innerText = active;
 }
 
-button.cancel {
-  background: #ef4444;
+// RENDER
+function renderTable() {
+  const table = document.getElementById("tableBody");
+  const search = document.getElementById("search").value.toLowerCase();
+
+  table.innerHTML = "";
+
+  offers
+    .filter(o => o.name.toLowerCase().includes(search))
+    .forEach((offer, index) => {
+      table.innerHTML += `
+        <tr class="${offer.stock < 5 ? "low-stock" : ""}">
+          <td>${offer.name}</td>
+          <td>${formatRupiah(offer.price)}</td>
+          <td>${offer.stock}</td>
+          <td>${offer.status}</td>
+          <td>
+            <button onclick="openModal(${index})">Edit</button>
+            <button onclick="deleteOffer(${index})">Delete</button>
+            <button onclick="toggleStatus(${index})">Toggle</button>
+          </td>
+        </tr>
+      `;
+    });
+
+  updateStats();
+  saveData();
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #1e293b;
+// MODAL
+function openModal(index = null) {
+  document.getElementById("modal").style.display = "block";
+
+  if (index !== null) {
+    editIndex = index;
+    document.getElementById("name").value = offers[index].name;
+    document.getElementById("price").value = offers[index].price;
+    document.getElementById("stock").value = offers[index].stock;
+  } else {
+    editIndex = null;
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("stock").value = "";
+  }
 }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #334155;
-  text-align: center;
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
 }
 
-.status-active {
-  color: #22c55e;
+// SAVE OFFER
+function saveOffer() {
+  const name = document.getElementById("name").value;
+  const price = Number(document.getElementById("price").value);
+  const stock = Number(document.getElementById("stock").value);
+
+  let newData = { name, price, stock, status: "Active" };
+
+  applyAutoPrice(newData);
+
+  if (editIndex !== null) {
+    offers[editIndex] = { ...offers[editIndex], ...newData };
+  } else {
+    offers.push(newData);
+  }
+
+  closeModal();
+  renderTable();
 }
 
-.status-paused {
-  color: #ef4444;
+// DELETE
+function deleteOffer(index) {
+  offers.splice(index, 1);
+  renderTable();
 }
 
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
+// TOGGLE
+function toggleStatus(index) {
+  offers[index].status =
+    offers[index].status === "Active" ? "Paused" : "Active";
+  renderTable();
 }
 
-.modal-content {
-  background: #1e293b;
-  padding: 20px;
-  width: 300px;
-  margin: 100px auto;
-  border-radius: 10px;
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
+// INIT
+renderTable();
