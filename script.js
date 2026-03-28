@@ -36,12 +36,31 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
+/* 🔥 FIX UTAMA DISINI */
 function saveOffer() {
-  const name = document.getElementById("name").value;
-  const price = parseInt(document.getElementById("price").value) || 0;
-  const stock = parseInt(document.getElementById("stock").value) || 0;
+  const name = document.getElementById("name").value.trim();
+  const price = document.getElementById("price").value.trim();
+  const stock = document.getElementById("stock").value.trim();
 
-  data.push({ name, price, stock, active: true });
+  // VALIDASI
+  if (!name || !price || !stock) {
+    alert("Isi semua field dulu bro!");
+    return;
+  }
+
+  const newItem = {
+    name: name,
+    price: Number(price),   // FIX: pakai Number
+    stock: Number(stock),
+    active: true
+  };
+
+  data.push(newItem);
+
+  // CLEAR INPUT
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("stock").value = "";
 
   closeModal();
   render();
