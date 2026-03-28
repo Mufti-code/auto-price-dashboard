@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Auto Price Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- CHART -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
-  <h1 class="title">📊 Auto Price Dashboard</h1>
-  <p class="subtitle">Manage products with automation</p>
 
-  <input type="text" id="search" placeholder="🔍 Search product..." />
+  <div class="header">
+    <div>
+      <h1>📊 Dashboard Pro</h1>
+      <p>Automation marketplace system</p>
+    </div>
 
-  <button class="add-btn" onclick="openModal()">+ Add Product</button>
+    <button class="add-btn" onclick="openModal()">+ Add Product</button>
+  </div>
 
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card"><h3 id="total">0</h3><span>Products</span></div>
+    <div class="card"><h3 id="stock">0</h3><span>Total Stock</span></div>
+    <div class="card"><h3 id="active">0</h3><span>Active</span></div>
+  </div>
+
+  <!-- CHART -->
+  <canvas id="chart"></canvas>
+
+  <!-- SEARCH -->
+  <input type="text" id="search" placeholder="Search..." oninput="render()">
+
+  <!-- TABLE -->
   <div class="card">
     <table>
       <thead>
@@ -27,25 +47,29 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody id="tableBody"></tbody>
+      <tbody id="body"></tbody>
     </table>
   </div>
+
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
-    <h2>Add Product</h2>
-    <input type="text" id="name" placeholder="Product Name" />
-    <input type="text" id="price" placeholder="Price (contoh: 150000)" />
-    <input type="number" id="stock" placeholder="Stock" />
+    <h2>Product</h2>
+    <input id="name" placeholder="Name">
+    <input id="price" placeholder="Price">
+    <input id="stock" placeholder="Stock">
 
     <div class="modal-actions">
-      <button class="save" onclick="saveOffer()">Save</button>
+      <button class="save" onclick="save()">Save</button>
       <button class="cancel" onclick="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
+
+<!-- TOAST -->
+<div id="toast"></div>
 
 <script src="script.js"></script>
 </body>

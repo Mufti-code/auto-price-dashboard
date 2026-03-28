@@ -1,0 +1,139 @@
+# 🚀 Auto Price Dashboard (PRO Version)
+
+A modern, responsive dashboard for managing product pricing, stock, and automation — inspired by real marketplace systems like Eldorado.gg.
+
+![Preview](preview.png)
+
+---
+
+## ✨ Features
+
+### 💼 Core Features
+
+* 📦 Add / Edit / Delete Products
+* 💰 Dynamic Price Management (No Limit)
+* 📊 Real-time Dashboard Stats
+* 🔍 Live Search & Filtering
+* 🔄 Toggle Active / Pause Offer
+
+### ⚡ Advanced Features
+
+* 📈 Stock Visualization (Chart.js)
+* 🔔 Toast Notification System
+* 💾 Local Storage Persistence
+* 🎨 Modern UI (Dark Mode + Clean Design)
+* 📱 Fully Responsive (Mobile Friendly)
+* ✨ Smooth Animations & Hover Effects
+
+---
+
+## 🖼️ Preview
+
+### 📊 Dashboard View
+
+![Dashboard](preview.png)
+
+### 📱 Mobile Responsive
+
+> Add mobile screenshot here (optional)
+
+<!-- ![Mobile](preview-mobile.png) -->
+
+---
+
+## 🧠 Use Case
+
+This project simulates a **marketplace seller dashboard** where users can:
+
+* Manage product listings
+* Adjust prices dynamically
+* Control stock availability
+* Monitor product performance
+
+Perfect for:
+
+* 💼 Portfolio Projects
+* 🧑‍💻 Freelance Showcase
+* 🚀 SaaS Prototype
+
+---
+
+## 🛠️ Tech Stack
+
+* HTML5
+* CSS3 (Flexbox + Animations)
+* JavaScript (Vanilla)
+* Chart.js
+
+---
+
+## 📦 Installation
+
+Clone this repository:
+
+```bash
+git clone https://github.com/Mufti-code/auto-price-dashboard.git
+```
+
+Open project:
+
+```bash
+cd auto-price-dashboard
+```
+
+Run:
+
+* Open `index.html` in browser
+  or
+* Use Live Server (VS Code)
+
+---
+
+## 🚀 Live Demo
+
+👉 https://auto-price-dashboard.vercel.app/
+
+---
+
+## 💡 Future Improvements
+
+* 🔗 API Integration (real marketplace)
+* 🔐 Authentication system (Login/Register)
+* ☁️ Database (Firebase / Supabase)
+* 📊 Advanced Analytics
+* 🤖 Auto Pricing Rules (AI Logic)
+
+---
+
+## 👨‍💻 Author
+
+**Mufti-code**
+Frontend Developer | Automation Enthusiast
+
+---
+
+## 💰 Freelance Ready
+
+This project is designed to be extended into a **real SaaS product**.
+
+Available for:
+
+* Custom Dashboard Development
+* Automation Systems
+* Marketplace Tools
+
+---
+
+## ⭐ Support
+
+If you like this project:
+
+* ⭐ Star this repo
+* 🍴 Fork it
+* 💬 Share feedback
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
