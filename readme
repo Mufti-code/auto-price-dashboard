@@ -1,8 +1,19 @@
 # 🚀 Auto Price Dashboard
 
-Modern dashboard untuk mengelola produk, harga, dan stok. Cocok untuk simulasi automation marketplace seperti Eldorado.gg.
+Modern web dashboard untuk mengelola produk, harga, dan stok.
+Cocok untuk simulasi automation marketplace seperti Eldorado.gg.
 
-![Preview](Preview.png)
+---
+
+## 📸 Preview
+
+![Dashboard Preview](./Preview.png)
+
+---
+
+## 🌐 Live Demo
+
+👉 https://auto-price-dashboard.vercel.app/
 
 ---
 
@@ -11,39 +22,27 @@ Modern dashboard untuk mengelola produk, harga, dan stok. Cocok untuk simulasi a
 ### 💼 Core Features
 
 * 📦 Add / Delete Product
-* 💰 Dynamic Pricing (No Limit Input)
-* 📊 Dashboard Summary (Total Product, Stock, Active)
-* 🔍 Live Search Filter
-* 🔄 Toggle Active / Pause Product
+* 💰 Dynamic Pricing (No Limit)
+* 📊 Dashboard Summary
+* 🔍 Live Search
+* 🔄 Toggle Active / Pause
 
 ---
 
 ### ⚡ UI / UX
 
-* 🎨 Clean Dark Modern UI
-* 📱 Fully Responsive (Mobile Friendly)
-* ✨ Smooth Animation & Hover Effects
-* ⚡ Fast Performance (Vanilla JS)
+* 🎨 Clean Dark UI
+* 📱 Responsive Mobile
+* ✨ Smooth Animation
+* ⚡ Fast & Lightweight
 
 ---
 
-### 🧠 Logic System
+### 🧠 System
 
-* 💾 Local Storage (Auto Save Data)
-* ✔️ Input Validation (No Empty Field)
-* 🔢 Flexible Number Input (No Limit Price)
-
----
-
-## 📸 Preview
-
-![Dashboard](Preview.png)
-
----
-
-## 🌐 Live Demo
-
-👉 https://auto-price-dashboard.vercel.app/
+* 💾 Local Storage (Auto Save)
+* ✔️ Validation Form
+* 🔢 Free Input Number
 
 ---
 
@@ -62,32 +61,19 @@ git clone https://github.com/Mufti-code/auto-price-dashboard.git
 cd auto-price-dashboard
 ```
 
-Run:
+Open:
 
 ```
 index.html
 ```
 
-atau gunakan Live Server di VS Code.
-
----
-
-## ⚠️ Fix & Improvements
-
-* ✔️ Fix bug add product tidak jalan
-* ✔️ Fix parsing number (price & stock)
-* ✔️ Improve UI contrast & button visibility
-* ✔️ Responsive layout update
-
 ---
 
 ## 💼 Use Case
 
-Project ini cocok untuk:
-
-* Portfolio Frontend Developer
-* Freelance Dashboard Project
-* Prototype SaaS / Automation Tools
+* Portfolio Developer
+* Freelance Dashboard
+* SaaS Prototype
 
 ---
 
@@ -99,11 +85,9 @@ Project ini cocok untuk:
 
 ## ⭐ Support
 
-Kalau project ini membantu:
-
 * ⭐ Star repo
 * 🍴 Fork
-* 💬 Share
+* 🔥 Share
 
 ---
 
