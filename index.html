@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>🚀 Marketplace Dashboard</h1>
+
+    <button onclick="openModal()">+ Add Offer</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Offer</h2>
+
+      <input id="name" placeholder="Product Name">
+      <input id="price" placeholder="Price" type="number">
+      <input id="stock" placeholder="Stock" type="number">
+
+      <button onclick="saveOffer()">Save</button>
+      <button onclick="closeModal()" class="cancel">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
