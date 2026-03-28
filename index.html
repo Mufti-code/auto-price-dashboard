@@ -3,65 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <title>Auto Price Dashboard</title>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>📊 Auto Price Dashboard</h1>
+<div class="container">
 
-<!-- STATS -->
-<div class="stats">
-  <div class="card">
-    <h3 id="totalProduct">0</h3>
-    <p>Total Product</p>
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>📊 Auto Price Dashboard</h1>
+      <p>Smart marketplace management system</p>
+    </div>
+
+    <button class="add-btn" onclick="openModal()">+ Add Product</button>
   </div>
-  <div class="card">
-    <h3 id="totalStock">0</h3>
-    <p>Total Stock</p>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card">
+      <h3 id="totalProduct">0</h3>
+      <span>Total Product</span>
+    </div>
+    <div class="card">
+      <h3 id="totalStock">0</h3>
+      <span>Total Stock</span>
+    </div>
+    <div class="card">
+      <h3 id="activeCount">0</h3>
+      <span>Active Offers</span>
+    </div>
   </div>
-  <div class="card">
-    <h3 id="activeCount">0</h3>
-    <p>Active Offers</p>
+
+  <!-- SEARCH -->
+  <input type="text" id="search" placeholder="🔍 Search product..." oninput="renderTable()">
+
+  <!-- TABLE -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Harga</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
   </div>
+
 </div>
-
-<!-- SEARCH -->
-<input type="text" id="search" placeholder="Search product..." oninput="renderTable()">
-
-<!-- ADD BUTTON -->
-<button onclick="openModal()">+ Add Product</button>
-
-<!-- TABLE -->
-<table>
-  <thead>
-    <tr>
-      <th>Nama</th>
-      <th>Harga</th>
-      <th>Stock</th>
-      <th>Status</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody id="tableBody"></tbody>
-</table>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <h2>Product</h2>
-    <input type="text" id="name" placeholder="Name">
+
+    <input type="text" id="name" placeholder="Product Name">
     <input type="number" id="price" placeholder="Price">
     <input type="number" id="stock" placeholder="Stock">
 
-    <button onclick="saveOffer()">Save</button>
-    <button onclick="closeModal()">Cancel</button>
+    <div class="modal-actions">
+      <button class="save" onclick="saveOffer()">Save</button>
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+    </div>
   </div>
 </div>
 
-<!-- JS (WAJIB DI BAWAH) -->
 <script src="script.js"></script>
-
 </body>
 </html>

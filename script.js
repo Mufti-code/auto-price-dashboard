@@ -1,34 +1,29 @@
 let offers = JSON.parse(localStorage.getItem("offers")) || [];
 let editIndex = null;
 
-// FORMAT RUPIAH
 function formatRupiah(num) {
   return "Rp " + num.toLocaleString("id-ID");
 }
 
-// AUTO PRICE (HANYA SAAT ADD / EDIT)
 function applyAutoPrice(offer) {
   if (offer.stock < 5) offer.price += 2000;
   else if (offer.stock > 20) offer.price -= 1000;
 }
 
-// SAVE STORAGE
 function saveData() {
   localStorage.setItem("offers", JSON.stringify(offers));
 }
 
-// STATS
 function updateStats() {
   document.getElementById("totalProduct").innerText = offers.length;
 
-  const totalStock = offers.reduce((sum, o) => sum + o.stock, 0);
+  const totalStock = offers.reduce((a, b) => a + b.stock, 0);
   document.getElementById("totalStock").innerText = totalStock;
 
   const active = offers.filter(o => o.status === "Active").length;
   document.getElementById("activeCount").innerText = active;
 }
 
-// RENDER TABLE
 function renderTable() {
   const table = document.getElementById("tableBody");
   const search = document.getElementById("search").value.toLowerCase();
@@ -57,20 +52,19 @@ function renderTable() {
   saveData();
 }
 
-// MODAL
 function openModal(index = null) {
   document.getElementById("modal").style.display = "block";
 
   if (index !== null) {
     editIndex = index;
-    document.getElementById("name").value = offers[index].name;
-    document.getElementById("price").value = offers[index].price;
-    document.getElementById("stock").value = offers[index].stock;
+    name.value = offers[index].name;
+    price.value = offers[index].price;
+    stock.value = offers[index].stock;
   } else {
     editIndex = null;
-    document.getElementById("name").value = "";
-    document.getElementById("price").value = "";
-    document.getElementById("stock").value = "";
+    name.value = "";
+    price.value = "";
+    stock.value = "";
   }
 }
 
@@ -78,38 +72,33 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-// SAVE
 function saveOffer() {
-  const name = document.getElementById("name").value;
-  const price = Number(document.getElementById("price").value);
-  const stock = Number(document.getElementById("stock").value);
+  const nameVal = document.getElementById("name").value;
+  const priceVal = Number(document.getElementById("price").value);
+  const stockVal = Number(document.getElementById("stock").value);
 
-  let newData = { name, price, stock, status: "Active" };
+  let data = { name: nameVal, price: priceVal, stock: stockVal, status: "Active" };
 
-  applyAutoPrice(newData);
+  applyAutoPrice(data);
 
   if (editIndex !== null) {
-    offers[editIndex] = { ...offers[editIndex], ...newData };
+    offers[editIndex] = { ...offers[editIndex], ...data };
   } else {
-    offers.push(newData);
+    offers.push(data);
   }
 
   closeModal();
   renderTable();
 }
 
-// DELETE
-function deleteOffer(index) {
-  offers.splice(index, 1);
+function deleteOffer(i) {
+  offers.splice(i, 1);
   renderTable();
 }
 
-// TOGGLE
-function toggleStatus(index) {
-  offers[index].status =
-    offers[index].status === "Active" ? "Paused" : "Active";
+function toggleStatus(i) {
+  offers[i].status = offers[i].status === "Active" ? "Paused" : "Active";
   renderTable();
 }
 
-// INIT
 renderTable();
