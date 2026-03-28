@@ -1,69 +1,44 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Auto Price Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="container">
+  <h1 class="title">📊 Auto Price Dashboard</h1>
+  <p class="subtitle">Manage products with automation</p>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div>
-      <h1>📊 Auto Price Dashboard</h1>
-      <p>Smart marketplace management system</p>
-    </div>
+  <input type="text" id="search" placeholder="🔍 Search product..." />
 
-    <button class="add-btn" onclick="openModal()">+ Add Product</button>
-  </div>
+  <button class="add-btn" onclick="openModal()">+ Add Product</button>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="card">
-      <h3 id="totalProduct">0</h3>
-      <span>Total Product</span>
-    </div>
-    <div class="card">
-      <h3 id="totalStock">0</h3>
-      <span>Total Stock</span>
-    </div>
-    <div class="card">
-      <h3 id="activeCount">0</h3>
-      <span>Active Offers</span>
-    </div>
-  </div>
-
-  <!-- SEARCH -->
-  <input type="text" id="search" placeholder="🔍 Search product..." oninput="renderTable()">
-
-  <!-- TABLE -->
-  <div class="table-container">
+  <div class="card">
     <table>
       <thead>
         <tr>
-          <th>Nama</th>
-          <th>Harga</th>
+          <th>Name</th>
+          <th>Price</th>
           <th>Stock</th>
           <th>Status</th>
-          <th>Aksi</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
-
 </div>
 
 <!-- MODAL -->
-<div id="modal" class="modal">
+<div class="modal" id="modal">
   <div class="modal-content">
-    <h2>Product</h2>
-
-    <input type="text" id="name" placeholder="Product Name">
-    <input type="number" id="price" placeholder="Price">
-    <input type="number" id="stock" placeholder="Stock">
+    <h2>Add Product</h2>
+    <input type="text" id="name" placeholder="Product Name" />
+    <input type="text" id="price" placeholder="Price (contoh: 150000)" />
+    <input type="number" id="stock" placeholder="Stock" />
 
     <div class="modal-actions">
       <button class="save" onclick="saveOffer()">Save</button>

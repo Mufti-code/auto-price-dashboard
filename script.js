@@ -1,71 +1,31 @@
-let offers = JSON.parse(localStorage.getItem("offers")) || [];
-let editIndex = null;
+let data = JSON.parse(localStorage.getItem("products")) || [];
 
-function formatRupiah(num) {
-  return "Rp " + num.toLocaleString("id-ID");
+function render() {
+  const body = document.getElementById("tableBody");
+  body.innerHTML = "";
+
+  data.forEach((item, i) => {
+    body.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.stock}</td>
+        <td class="${item.active ? 'active' : 'paused'}">
+          ${item.active ? 'Active' : 'Paused'}
+        </td>
+        <td>
+          <button onclick="toggle(${i})">Toggle</button>
+          <button onclick="del(${i})">Delete</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  localStorage.setItem("products", JSON.stringify(data));
 }
 
-function applyAutoPrice(offer) {
-  if (offer.stock < 5) offer.price += 2000;
-  else if (offer.stock > 20) offer.price -= 1000;
-}
-
-function saveData() {
-  localStorage.setItem("offers", JSON.stringify(offers));
-}
-
-function updateStats() {
-  document.getElementById("totalProduct").innerText = offers.length;
-
-  const totalStock = offers.reduce((a, b) => a + b.stock, 0);
-  document.getElementById("totalStock").innerText = totalStock;
-
-  const active = offers.filter(o => o.status === "Active").length;
-  document.getElementById("activeCount").innerText = active;
-}
-
-function renderTable() {
-  const table = document.getElementById("tableBody");
-  const search = document.getElementById("search").value.toLowerCase();
-
-  table.innerHTML = "";
-
-  offers
-    .filter(o => o.name.toLowerCase().includes(search))
-    .forEach((offer, index) => {
-      table.innerHTML += `
-        <tr class="${offer.stock < 5 ? "low-stock" : ""}">
-          <td>${offer.name}</td>
-          <td>${formatRupiah(offer.price)}</td>
-          <td>${offer.stock}</td>
-          <td>${offer.status}</td>
-          <td>
-            <button onclick="openModal(${index})">Edit</button>
-            <button onclick="deleteOffer(${index})">Delete</button>
-            <button onclick="toggleStatus(${index})">Toggle</button>
-          </td>
-        </tr>
-      `;
-    });
-
-  updateStats();
-  saveData();
-}
-
-function openModal(index = null) {
-  document.getElementById("modal").style.display = "block";
-
-  if (index !== null) {
-    editIndex = index;
-    name.value = offers[index].name;
-    price.value = offers[index].price;
-    stock.value = offers[index].stock;
-  } else {
-    editIndex = null;
-    name.value = "";
-    price.value = "";
-    stock.value = "";
-  }
+function openModal() {
+  document.getElementById("modal").style.display = "flex";
 }
 
 function closeModal() {
@@ -73,32 +33,24 @@ function closeModal() {
 }
 
 function saveOffer() {
-  const nameVal = document.getElementById("name").value;
-  const priceVal = Number(document.getElementById("price").value);
-  const stockVal = Number(document.getElementById("stock").value);
+  const name = document.getElementById("name").value;
+  const price = parseInt(document.getElementById("price").value) || 0;
+  const stock = document.getElementById("stock").value;
 
-  let data = { name: nameVal, price: priceVal, stock: stockVal, status: "Active" };
-
-  applyAutoPrice(data);
-
-  if (editIndex !== null) {
-    offers[editIndex] = { ...offers[editIndex], ...data };
-  } else {
-    offers.push(data);
-  }
+  data.push({ name, price, stock, active: true });
 
   closeModal();
-  renderTable();
+  render();
 }
 
-function deleteOffer(i) {
-  offers.splice(i, 1);
-  renderTable();
+function toggle(i) {
+  data[i].active = !data[i].active;
+  render();
 }
 
-function toggleStatus(i) {
-  offers[i].status = offers[i].status === "Active" ? "Paused" : "Active";
-  renderTable();
+function del(i) {
+  data.splice(i, 1);
+  render();
 }
 
-renderTable();
+render();
