@@ -1,8 +1,8 @@
-# 🚀 Auto Price Dashboard (PRO Version)
+# 🚀 Auto Price Dashboard
 
-A modern, responsive dashboard for managing product pricing, stock, and automation — inspired by real marketplace systems like Eldorado.gg.
+Modern dashboard untuk mengelola produk, harga, dan stok. Cocok untuk simulasi automation marketplace seperti Eldorado.gg.
 
-![Preview](preview.png)
+![Preview](Preview.png)
 
 ---
 
@@ -10,130 +10,103 @@ A modern, responsive dashboard for managing product pricing, stock, and automati
 
 ### 💼 Core Features
 
-* 📦 Add / Edit / Delete Products
-* 💰 Dynamic Price Management (No Limit)
-* 📊 Real-time Dashboard Stats
-* 🔍 Live Search & Filtering
-* 🔄 Toggle Active / Pause Offer
+* 📦 Add / Delete Product
+* 💰 Dynamic Pricing (No Limit Input)
+* 📊 Dashboard Summary (Total Product, Stock, Active)
+* 🔍 Live Search Filter
+* 🔄 Toggle Active / Pause Product
 
-### ⚡ Advanced Features
+---
 
-* 📈 Stock Visualization (Chart.js)
-* 🔔 Toast Notification System
-* 💾 Local Storage Persistence
-* 🎨 Modern UI (Dark Mode + Clean Design)
+### ⚡ UI / UX
+
+* 🎨 Clean Dark Modern UI
 * 📱 Fully Responsive (Mobile Friendly)
-* ✨ Smooth Animations & Hover Effects
+* ✨ Smooth Animation & Hover Effects
+* ⚡ Fast Performance (Vanilla JS)
 
 ---
 
-## 🖼️ Preview
+### 🧠 Logic System
 
-### 📊 Dashboard View
-
-![Dashboard](preview.png)
-
-### 📱 Mobile Responsive
-
-> Add mobile screenshot here (optional)
-
-<!-- ![Mobile](preview-mobile.png) -->
+* 💾 Local Storage (Auto Save Data)
+* ✔️ Input Validation (No Empty Field)
+* 🔢 Flexible Number Input (No Limit Price)
 
 ---
 
-## 🧠 Use Case
+## 📸 Preview
 
-This project simulates a **marketplace seller dashboard** where users can:
-
-* Manage product listings
-* Adjust prices dynamically
-* Control stock availability
-* Monitor product performance
-
-Perfect for:
-
-* 💼 Portfolio Projects
-* 🧑‍💻 Freelance Showcase
-* 🚀 SaaS Prototype
+![Dashboard](Preview.png)
 
 ---
 
-## 🛠️ Tech Stack
-
-* HTML5
-* CSS3 (Flexbox + Animations)
-* JavaScript (Vanilla)
-* Chart.js
-
----
-
-## 📦 Installation
-
-Clone this repository:
-
-```bash
-git clone https://github.com/Mufti-code/auto-price-dashboard.git
-```
-
-Open project:
-
-```bash
-cd auto-price-dashboard
-```
-
-Run:
-
-* Open `index.html` in browser
-  or
-* Use Live Server (VS Code)
-
----
-
-## 🚀 Live Demo
+## 🌐 Live Demo
 
 👉 https://auto-price-dashboard.vercel.app/
 
 ---
 
-## 💡 Future Improvements
+## 🛠️ Tech Stack
 
-* 🔗 API Integration (real marketplace)
-* 🔐 Authentication system (Login/Register)
-* ☁️ Database (Firebase / Supabase)
-* 📊 Advanced Analytics
-* 🤖 Auto Pricing Rules (AI Logic)
+* HTML
+* CSS
+* JavaScript (Vanilla)
+
+---
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/Mufti-code/auto-price-dashboard.git
+cd auto-price-dashboard
+```
+
+Run:
+
+```
+index.html
+```
+
+atau gunakan Live Server di VS Code.
+
+---
+
+## ⚠️ Fix & Improvements
+
+* ✔️ Fix bug add product tidak jalan
+* ✔️ Fix parsing number (price & stock)
+* ✔️ Improve UI contrast & button visibility
+* ✔️ Responsive layout update
+
+---
+
+## 💼 Use Case
+
+Project ini cocok untuk:
+
+* Portfolio Frontend Developer
+* Freelance Dashboard Project
+* Prototype SaaS / Automation Tools
 
 ---
 
 ## 👨‍💻 Author
 
 **Mufti-code**
-Frontend Developer | Automation Enthusiast
-
----
-
-## 💰 Freelance Ready
-
-This project is designed to be extended into a **real SaaS product**.
-
-Available for:
-
-* Custom Dashboard Development
-* Automation Systems
-* Marketplace Tools
 
 ---
 
 ## ⭐ Support
 
-If you like this project:
+Kalau project ini membantu:
 
-* ⭐ Star this repo
-* 🍴 Fork it
-* 💬 Share feedback
+* ⭐ Star repo
+* 🍴 Fork
+* 💬 Share
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the MIT License.
+MIT License
