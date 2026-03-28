@@ -1,86 +1,115 @@
-body {
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-  padding: 20px;
+let offers = JSON.parse(localStorage.getItem("offers")) || [];
+let editIndex = null;
+
+// FORMAT RUPIAH
+function formatRupiah(num) {
+  return "Rp " + num.toLocaleString("id-ID");
 }
 
-h1 {
-  margin-bottom: 20px;
+// AUTO PRICE (HANYA SAAT ADD / EDIT)
+function applyAutoPrice(offer) {
+  if (offer.stock < 5) offer.price += 2000;
+  else if (offer.stock > 20) offer.price -= 1000;
 }
 
-.stats {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+// SAVE STORAGE
+function saveData() {
+  localStorage.setItem("offers", JSON.stringify(offers));
 }
 
-.card {
-  flex: 1;
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
+// STATS
+function updateStats() {
+  document.getElementById("totalProduct").innerText = offers.length;
+
+  const totalStock = offers.reduce((sum, o) => sum + o.stock, 0);
+  document.getElementById("totalStock").innerText = totalStock;
+
+  const active = offers.filter(o => o.status === "Active").length;
+  document.getElementById("activeCount").innerText = active;
 }
 
-input#search {
-  padding: 10px;
-  width: 100%;
-  margin-bottom: 10px;
+// RENDER TABLE
+function renderTable() {
+  const table = document.getElementById("tableBody");
+  const search = document.getElementById("search").value.toLowerCase();
+
+  table.innerHTML = "";
+
+  offers
+    .filter(o => o.name.toLowerCase().includes(search))
+    .forEach((offer, index) => {
+      table.innerHTML += `
+        <tr class="${offer.stock < 5 ? "low-stock" : ""}">
+          <td>${offer.name}</td>
+          <td>${formatRupiah(offer.price)}</td>
+          <td>${offer.stock}</td>
+          <td>${offer.status}</td>
+          <td>
+            <button onclick="openModal(${index})">Edit</button>
+            <button onclick="deleteOffer(${index})">Delete</button>
+            <button onclick="toggleStatus(${index})">Toggle</button>
+          </td>
+        </tr>
+      `;
+    });
+
+  updateStats();
+  saveData();
 }
 
-button {
-  padding: 8px 12px;
-  margin: 3px;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  color: white;
+// MODAL
+function openModal(index = null) {
+  document.getElementById("modal").style.display = "block";
+
+  if (index !== null) {
+    editIndex = index;
+    document.getElementById("name").value = offers[index].name;
+    document.getElementById("price").value = offers[index].price;
+    document.getElementById("stock").value = offers[index].stock;
+  } else {
+    editIndex = null;
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("stock").value = "";
+  }
 }
 
-button:hover {
-  opacity: 0.8;
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #1e293b;
+// SAVE
+function saveOffer() {
+  const name = document.getElementById("name").value;
+  const price = Number(document.getElementById("price").value);
+  const stock = Number(document.getElementById("stock").value);
+
+  let newData = { name, price, stock, status: "Active" };
+
+  applyAutoPrice(newData);
+
+  if (editIndex !== null) {
+    offers[editIndex] = { ...offers[editIndex], ...newData };
+  } else {
+    offers.push(newData);
+  }
+
+  closeModal();
+  renderTable();
 }
 
-th, td {
-  padding: 10px;
-  text-align: center;
+// DELETE
+function deleteOffer(index) {
+  offers.splice(index, 1);
+  renderTable();
 }
 
-th {
-  background: #334155;
+// TOGGLE
+function toggleStatus(index) {
+  offers[index].status =
+    offers[index].status === "Active" ? "Paused" : "Active";
+  renderTable();
 }
 
-.low-stock {
-  background: rgba(255,0,0,0.2);
-}
-
-/* BUTTON COLORS */
-button:nth-child(1) { background: #3b82f6; }
-button:nth-child(2) { background: #ef4444; }
-button:nth-child(3) { background: #f59e0b; }
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-  background: #1e293b;
-  padding: 20px;
-  margin: 100px auto;
-  width: 300px;
-  border-radius: 10px;
-}
+// INIT
+renderTable();

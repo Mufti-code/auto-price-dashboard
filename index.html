@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Auto Price Dashboard</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,7 +30,7 @@
 <!-- SEARCH -->
 <input type="text" id="search" placeholder="Search product..." oninput="renderTable()">
 
-<!-- BUTTON -->
+<!-- ADD BUTTON -->
 <button onclick="openModal()">+ Add Product</button>
 
 <!-- TABLE -->
@@ -52,11 +54,14 @@
     <input type="text" id="name" placeholder="Name">
     <input type="number" id="price" placeholder="Price">
     <input type="number" id="stock" placeholder="Stock">
+
     <button onclick="saveOffer()">Save</button>
     <button onclick="closeModal()">Cancel</button>
   </div>
 </div>
 
+<!-- JS (WAJIB DI BAWAH) -->
 <script src="script.js"></script>
+
 </body>
 </html>
